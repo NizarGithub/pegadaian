@@ -51,9 +51,9 @@
         </tfoot>
         </table>
       </div><!-- /.box-body -->
-      <div class="box-footer">
+      <!-- <div class="box-footer">
         <button type="button" id="grafik" name="grafik" class="btn btn-primary">Grafik</button>
-      </div>
+      </div> -->
     </div><!-- /.box -->
   </div>
 </div>

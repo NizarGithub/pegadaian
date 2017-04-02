@@ -7,7 +7,7 @@ $page = (isset($_GET['page'])) ? $_GET['page'] : "list";
 $title = ucwords("DETAIL PEMBELI");
 
 $_SESSION['menu_active'] = 1;
-$_SESSION['sub_menu_active'] = 15;
+$_SESSION['sub_menu_active'] = 17;
 $permit = get_akses_permits($_SESSION['user_type_id'],$_SESSION['sub_menu_active']);
 switch ($page) {
 	case 'list':
@@ -38,6 +38,39 @@ switch ($page) {
 			$row_2 = select_object_config('members_darurat',$where);
 			$row_3 = select_object_config('members_pekerjaan',$where);
 			$q_history = select_history_transaksi($id);
+
+			$where_member_id = "WHERE member_id = '$id'";
+			$cek_member_darurat = select_config_by('members_darurat', 'count(*)', $where_member_id);
+			$cek_member_pekerjaan = select_config_by('members_pekerjaan', 'count(*)', $where_member_id);
+
+			if ($cek_member_darurat==0) {
+				$row_2 = new stdClass();
+				$row_2->nama_darurat = false;
+				$row_2->hubungan = false;
+				$row_2->alamat = false;
+				$row_2->no_telp = false;
+			}
+
+			if ($cek_member_pekerjaan==0) {
+				$row_3 = new stdClass();
+				$row_3->nama_perusahaan = false;
+				$row_3->alamat_perusahaan = false;
+				$row_3->kode_pos = false;
+				$row_3->RT = false;
+				$row_3->RW = false;
+				$row_3->kelurahan = false;
+				$row_3->kecamatan = false;
+				$row_3->kota = false;
+				$row_3->telp_kantor = false;
+				$row_3->jenis_pekerjaan = false;
+				$row_3->jabatan = false;
+				$row_3->lama_bekerja_tahun = false;
+				$row_3->lama_bekerja_bulan = false;
+				$row_3->penghasilan = false;
+				$row_3->pengeluaran = false;
+				$row_3->penghasilan_lain = false;
+				$row_3->sumber_penghasilan = false;
+			}
 
 			$action = "member.php?page=edit&id=$id";
 		} else {
@@ -92,7 +125,9 @@ switch ($page) {
 			$row_3->pengeluaran = false;
 			$row_3->penghasilan_lain = false;
 			$row_3->sumber_penghasilan = false;
+
 			$action = "member.php?page=save";
+
 		}
 		include '../views/member/form.php';
 		get_footer();

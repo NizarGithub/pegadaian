@@ -6,7 +6,8 @@
         <div class="box-header" style="cursor: move;">
           <h3 class="box-title"><strong>Journal</strong></h3>
         </div>
-        <table id="example1" class="table table-bordered table-striped">
+        <input type="hidden" id="i_date" name="i_date" value="<?= $i_date?>">
+        <table id="arus_kas_tb" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th style="width:2%;">No</th>
@@ -72,3 +73,27 @@
     </div><!-- /.box -->
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var i_date = $('#i_date').val();
+    $('#arus_kas_tb').DataTable( {
+        scrollX: '1000px',
+        dom: 'Bfrtip',
+        buttons: [
+              {
+                  extend: 'pageLength'
+              },
+              {
+                  text: 'Excel',
+                  action: function ( e, dt, node, config ) {
+                     window.location.href = 'arus_kas.php?page=export_journal_excel&date='+i_date;
+                  }
+              }
+          ],
+          lengthMenu: [
+              [ 10, 25, 50, -1 ],
+              [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+          ]
+    } );
+} );
+</script>

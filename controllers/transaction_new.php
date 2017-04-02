@@ -1092,7 +1092,44 @@ switch ($page) {
 
 	case 'btn_add_pembeli_cash':
 		$transaction_id = $_GET['id'];
+		$action = "transaction_new.php?page=save_pembeli_cash";
 		include '../views/transaction_new/popmodal_tambah_pembeli_cash.php';
+		break;
+
+	case 'save_pembeli_cash':
+		$i_name = $_POST['i_name'];
+		$transaction_id = $_POST['transaction_id'];
+		$i_nik = $_POST['i_nik'];
+		$i_alamat = $_POST['i_alamat'];
+		$i_phone = $_POST['i_phone'];
+
+		$data = "'',
+						'$i_name',
+						'$i_phone',
+						'',
+						'$i_alamat',
+						'',
+						'$i_nik',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						'',
+						''";
+		create_config('members', $data);
+		$member_id = mysql_insert_id();
+		$_SESSION['member_id'] = $member_id;
+		header("Location:transaction_new.php?page=list&transaction_id=$transaction_id");
 		break;
 }
 

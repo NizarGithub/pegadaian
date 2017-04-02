@@ -168,6 +168,11 @@ switch ($page) {
 		header("Location: arus_kas.php?page=list&preview=1&date=$date_default");
 	break;
 
+	case 'export_journal_excel':
+		$i_date = $_GET['date'];
+		header("Location: export_excel.php?page=export_journal_excel&date=$i_date");
+		break;
+
 }
 
 ?>

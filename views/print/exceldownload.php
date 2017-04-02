@@ -98,31 +98,31 @@ while ($row = mysql_fetch_array($query)) {
 	$bayar = $bayar+$row['transaction_payment'];
 	$kembali = $kembali+($row['transaction_payment']-$totalkedua);
 	$objPHPExcel->setActiveSheetIndex(0)
-        		->setCellValue('A'.$i, $j)
-            ->setCellValue('B'.$i, $row['transaction_id'])//INI INVOICE
-            ->setCellValue('C'.$i, $row['transaction_date'])
-            // ->setCellValue('D'.$i, $row['table_name'].'('.$row['building_name'].')')
-            ->setCellValue('D'.$i, 'Rp. '.number_format($row['transaction_total']))
-            ->setCellValue('E'.$i, $row['transaction_discount'].'%')
-			->setCellValue('F'.$i, 'Rp. '.number_format($row['transaction_discount']/100*$row['transaction_total']))
-			// ->setCellValue('H'.$i, 'Rp. '.number_format($svc))
-			->setCellValue('G'.$i, 'Rp. '.number_format($tax))
-			->setCellValue('H'.$i, 'Rp. '.number_format($totalkedua))
-			->setCellValue('I'.$i, 'Rp. '.number_format($row['transaction_payment']))
-			->setCellValue('J'.$i, 'Rp. '.number_format($row['transaction_payment']-$totalkedua));
-				$i++;
-				$j++;
+	        		->setCellValue('A'.$i, $j)
+	            ->setCellValue('B'.$i, $row['transaction_id'])//INI INVOICE
+	            ->setCellValue('C'.$i, $row['transaction_date'])
+	            // ->setCellValue('D'.$i, $row['table_name'].'('.$row['building_name'].')')
+	            ->setCellValue('D'.$i, 'Rp. '.number_format($row['transaction_total']))
+	            ->setCellValue('E'.$i, $row['transaction_discount'].'%')
+							->setCellValue('F'.$i, 'Rp. '.number_format($row['transaction_discount']/100*$row['transaction_total']))
+							// ->setCellValue('H'.$i, 'Rp. '.number_format($svc))
+							->setCellValue('G'.$i, 'Rp. '.number_format($tax))
+							->setCellValue('H'.$i, 'Rp. '.number_format($totalkedua))
+							->setCellValue('I'.$i, 'Rp. '.number_format($row['transaction_payment']))
+							->setCellValue('J'.$i, 'Rp. '.number_format($row['transaction_payment']-$totalkedua));
+								$i++;
+								$j++;
 }
 $k = $i++;
 $objPHPExcel->setActiveSheetIndex(0)
-			->setCellValue('B'.$k, 'Total')
-			->setCellValue('D'.$k, 'Rp. '.number_format($total))
-			->setCellValue('F'.$k, 'Rp. '.number_format($discount))
-			// ->setCellValue('G'.$k, 'Rp. '.number_format($charge))
-			->setCellValue('G'.$k, 'Rp. '.number_format($tax))
-			->setCellValue('H'.$k, 'Rp. '.number_format($grandtot))
-			->setCellValue('I'.$k, 'Rp. '.number_format($bayar))
-			->setCellValue('J'.$k, 'Rp. '.number_format($kembali));
+						->setCellValue('B'.$k, 'Total')
+						->setCellValue('D'.$k, 'Rp. '.number_format($total))
+						->setCellValue('F'.$k, 'Rp. '.number_format($discount))
+						// ->setCellValue('G'.$k, 'Rp. '.number_format($charge))
+						->setCellValue('G'.$k, 'Rp. '.number_format($tax))
+						->setCellValue('H'.$k, 'Rp. '.number_format($grandtot))
+						->setCellValue('I'.$k, 'Rp. '.number_format($bayar))
+						->setCellValue('J'.$k, 'Rp. '.number_format($kembali));
 
 // Rename worksheet
 $objPHPExcel->getActiveSheet()->setTitle('Simple');

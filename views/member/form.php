@@ -613,7 +613,7 @@ function lookup(elem){
         $('#t_1').removeClass('fa fa-times');
         $('#t_2').removeClass('fa fa-times');
         $('#t_3').removeClass('fa fa-times');
-        for (var i = 0; i <= field_count; i++) {
+        for (var i = 0; i < field_count; i++) {
           var elem = field[i];
           var value = field[i].val();
           var parent = $(elem).parent();
@@ -672,7 +672,8 @@ function lookup(elem){
 
   function submit_form(){
     var member_id = $('#member_id').val();
-    if (member_id) {
+    alert(member_id);
+    if (member_id!=null) {
       // var url = "member.php?page=edit&id="+member_id;
       var did = 2;
     }else {

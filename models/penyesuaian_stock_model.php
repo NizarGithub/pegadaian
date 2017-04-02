@@ -51,8 +51,12 @@ function delete($id,$branch_id){
   mysql_query("delete from item_stocks where item_id = '$id' and branch_id = '$branch_id'");
 }
 
-function update_stok($item_qty, $branch_id, $item_id){
-  mysql_query("update item_stocks set item_stock_qty = '$item_qty' WHERE branch_id = '$branch_id' and item_id = '$item_id'");
+function update_stok($item_qty, $branch_id, $item_id, $penyesuaian_stock){
+  if ($penyesuaian_stock==1) {
+    mysql_query("update item_stocks set item_stock_qty = item_stock_qty - '$item_qty' WHERE branch_id = '$branch_id' and item_id = '$item_id'");
+  } else {
+    mysql_query("update item_stocks set item_stock_qty = item_stock_qty + '$item_qty' WHERE branch_id = '$branch_id' and item_id = '$item_id'");
+  }
 }
 
  ?>
