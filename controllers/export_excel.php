@@ -15,15 +15,17 @@ switch ($page) {
   	$date1 	= $date[0];
   	$date2 	= $date[1];
 
-    $date1 	= str_replace("/","-", $date1);
-  	$date2 	= str_replace("/","-", $date2);
+    $date1 = format_back_date($date1);
+    $date2 = format_back_date($date2);
 
     $branch_id = $_SESSION['branch_id'];
 
     if ($branch_id==3) { $and_branch_id = ""; } else { $and_branch_id = "AND a.branch_id = '$branch_id'"; }
 
     $q_umum = select_jurnal_umum($and_branch_id, $date1, $date2);
-    // include '../views/export_excel/export_journal_excel.php';
+
+    $q_angsuran = select_jurnal_angsuran($and_branch_id, $date1, $date2);
+    include '../views/export_excel/export_journal_excel.php';
     break;
 
 }

@@ -672,7 +672,6 @@ function lookup(elem){
 
   function submit_form(){
     var member_id = $('#member_id').val();
-    alert(member_id);
     if (member_id!=null) {
       // var url = "member.php?page=edit&id="+member_id;
       var did = 2;

@@ -42,10 +42,10 @@
               <td><?= tool_format_number($row_item['journal_credit'])?></td>
               <td><?= tool_format_number($row_item['journal_piutang'])?></td>
               <td><?= tool_format_number($row_item['journal_hutang'])?></td>
-              <td><?= tool_format_number($row_item['bank_id'])?></td>
-              <td><?= tool_format_number($row_item['bank_account'])?></td>
-              <td><?= tool_format_number($row_item['bank_id_to'])?></td>
-              <td><?= tool_format_number($row_item['bank_account_to'])?></td>
+              <td><?= get_bank_name($row_item['bank_id'])?></td>
+              <td><?= $row_item['bank_account']?></td>
+              <td><?= get_bank_name($row_item['bank_id_to'])?></td>
+              <td><?= $row_item['bank_account_to']?></td>
               <?php
               $q_branch=mysql_query("SELECT branch_name from branches WHERE branch_id =".$row_item['branch_id']);
               $r_branch = mysql_fetch_array($q_branch);

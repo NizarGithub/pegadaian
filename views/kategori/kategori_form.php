@@ -112,7 +112,7 @@
                   </td>
                   <td style="text-align:center;">
                     <a href="javascript:void(0);" class="btn btn-default"
-                    onclick="tambah_keterangan(2,<?= $r_kategori_ket['kategori_keterangan_id']?>)">
+                    onclick="tambah_keterangan('2',<?= $r_kategori_ket['kategori_keterangan_id']?>)">
                       <i class="fa fa-pencil"></i>
                     </a>
                     <a href="javascript:void(0);" class="btn btn-default"
@@ -128,7 +128,7 @@
             <tfoot>
               <tr>
                 <td colspan="3">
-                  <button type="button" name="button" class="btn btn-primary" onclick="tambah_keterangan(1,'')">Tambah Keterangan</button>
+                  <button type="button" name="button" class="btn btn-primary" onclick="tambah_keterangan('1','')">Tambah Keterangan</button>
                 </td>
               </tr>
             </tfoot>
@@ -176,11 +176,8 @@ $(document).ready(function() {
 
 function tambah_keterangan(param,kk_id){
   var y = <?php echo $id ?>;
-  if (param==1) {
     var url = "kategori.php?page=popmodal_keterangan&id="+kk_id+"&kategori_id="+y;
-  } else {
-    var url = "kategori.php?page=popmodal_keterangan&kategori_id="+y;
-  }
+    // var url = "kategori.php?page=popmodal_keterangan&kategori_id="+y;
   $('#medium_modal').modal();
   $('#medium_modal_content').load(url,function(result){});
 }

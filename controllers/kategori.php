@@ -124,7 +124,8 @@ switch ($page) {
 
   case 'popmodal_keterangan':
     $kategori_id = $_GET['kategori_id'];
-    $id = $_GET['id'];
+    $id = (isset($_GET['id'])) ? $_GET['id'] : null;
+
     if ($id) {
       $where_kategori_id = "WHERE kategori_keterangan_id = '$id'";
       $row = select_object_config('kategori_keterangan', $where_kategori_id);
@@ -136,6 +137,7 @@ switch ($page) {
       $row->keterangan = false;
       $action = "kategori.php?page=save_kategori_keterangan&kategori_id=$kategori_id";
     }
+
     include '../views/kategori/kategori_keterangan_popmodal.php';
     break;
 

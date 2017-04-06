@@ -309,7 +309,7 @@ function get_branch_name($id){
 function select_member_detail($id){
 	$query = mysql_query("SELECT a.*, b.*, c.jenis_pekerjaan, c.jabatan FROM members a
 												LEFT JOIN members_darurat b ON b.member_id = a.member_id
-												LEFT JOIN members_pekerjaan c ON c.member_id = c.member_id
+												LEFT JOIN members_pekerjaan c ON a.member_id = c.member_id
 												WHERE a.member_id = '$id'");
 	return $query;
 }

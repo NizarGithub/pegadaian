@@ -53,13 +53,17 @@ if(isset($_GET['did']) && $_GET['did'] == 1){ ?>
               <td><?= $no?></td>
               <td><?= $row['tutorial_name']?></td>
               <td style="text-align:center;">
+                <?php if (strpos($permit, 'u') !== false): ?>
                 <a href="tutorial.php?page=form&id=<?= $row['tutorial_id']?>" class="btn btn-default" >
                   <i class="fa fa-pencil"></i>
                 </a>
+              <?php endif;?>
+              <?php if (strpos($permit, 'd') !== false): ?>
                 <a href="javascript:void(0)" onclick="confirm_delete(<?= $row['tutorial_id']; ?>,'tutorial.php?page=delete&id=')"
                   class="btn btn-default" >
                   <i class="fa fa-trash-o"></i>
                 </a>
+              <?php endif;?>  
                 <button type="button" name="button" class="btn btn-default" onclick="play_video(<?= $row['tutorial_id']?>)">
                   <i class="fa fa-play"></i>
                 </button>

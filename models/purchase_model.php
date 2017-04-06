@@ -109,7 +109,7 @@ function create_journal($data_id, $data_url, $journal_type_id, $i_payment_method
 	mysql_query("insert into journals values(
 				'',
 				'$journal_type_id',
-				'".time()."',
+				'$data_id',
 				'$data_url',
 				'0',
 				'$journal_credit',

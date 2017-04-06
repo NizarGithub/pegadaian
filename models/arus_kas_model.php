@@ -10,7 +10,7 @@ function select_detail($date1, $date2, $branch_id,$journal_type_id){
 	}
 	$query = mysql_query("SELECT a.*, b.journal_type_name
 							from journals a
-							join journal_types b on b.journal_type_id = a.journal_type_id
+							left join journal_types b on b.journal_type_id = a.journal_type_id
 							WHERE  journal_date >= '$date1'
 							AND journal_date <= '$date2'
 							$where
