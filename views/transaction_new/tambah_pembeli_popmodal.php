@@ -1,20 +1,28 @@
 
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <div class="popmodal_title" style="font-size: 18px; margin-bottom:0;text-align:center;">Tambah Pembeli</div>
   <div id="tabs">
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active">
-        <a href="#tab_1" aria-controls="home" role="tab" data-toggle="tab">Data Pribadi&nbsp;<i id="t_1" style="color:#dd0d0d;font-size:20px;"></i></a>
+        <a href="#tab_1" aria-controls="home" role="tab" data-toggle="tab">Data Pribadi&nbsp;<i id="t_1"
+          style="color:#dd0d0d;font-size:20px;"></i></a>
       </li>
       <li role="presentation">
-        <a href="#tab_2" aria-controls="profile" role="tab" data-toggle="tab">Darurat&nbsp;<i id="t_2" style="color:#dd0d0d;font-size:20px;"></i></a>
+        <a href="#tab_2" aria-controls="profile" role="tab" data-toggle="tab">Darurat&nbsp;<i id="t_2"
+          style="color:#dd0d0d;font-size:20px;"></i></a>
       </li>
       <li role="presentation">
-        <a href="#tab_3" aria-controls="messages" role="tab" data-toggle="tab">Data Pekerjaan&nbsp;<i id="t_3" style="color:#dd0d0d;font-size:20px;"></i></a>
+        <a href="#tab_3" aria-controls="messages" role="tab" data-toggle="tab">
+          Data Pekerjaan&nbsp;
+          <i id="t_3" style="color:#dd0d0d;font-size:20px;"></i>
+        </a>
       </li>
       <div style="text-align:right;">
-        <button type="button" id="btn_add_pembeli_cash" name="btn_add_pembeli_cash" class="btn btn-success" onclick="btn_add_pembeli_cash()">
+        <button type="button" id="btn_add_pembeli_cash" name="btn_add_pembeli_cash"
+        class="btn btn-success" onclick="btn_add_pembeli_cash()">
           Pembeli Cash
         </button>
       </div>

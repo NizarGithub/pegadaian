@@ -547,6 +547,11 @@ function format_berat($berat){
 	return $berat;
 }
 
+function get_tanggal_saja($tanggal){
+	$tahun = date('d', strtotime($tanggal));
+	return $tahun;
+}
+
 function get_nama_hari($day){
 	$nama_hari = array("Minggu","Senin","Selasa","Rabu","Kamis","Jum'at","Sabtu");
 	$jml_hari = count($nama_hari);
@@ -564,8 +569,8 @@ function get_nama_bulan($bulan){
 	return $bulan_ini;
 }
 
-function get_tahun($day){
-	$tahun = date('Y', strtotime($day));
+function get_tahun($tanggal){
+	$tahun = date('Y', strtotime($tanggal));
 	return $tahun;
 }
 
