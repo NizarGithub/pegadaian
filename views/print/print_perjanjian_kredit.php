@@ -179,9 +179,9 @@ $pdf->Cell(0, 5, 'b.', 0, 0, 'L');
 $pdf->SetXY(5,$y+42);
 $pdf->MultiCell(95, 5, 'Apabila PIHAK KEDUA telah melunasi semua pembayaran angsuran Barang tersebut, maka PIHAK PERTAMA akan menyerahkan hak kepemilikan barang tersebut kepada PIHAKKEDUA dalam bentuk Surat Tanda Bukti Lunas (STBL).', 0, 'J');
 //
-$pdf->SetXY(0,$y+6);
+$pdf->SetXY(0,$y+67);
 $pdf->Cell(5, 5, 'c.', 0, 0, 'L');
-$pdf->SetXY(5,$y+160);
+$pdf->SetXY(5,$y+67);
 $pdf->MultiCell(95, 5, 'Jika barang tersebut dibeli secara diangsur maka keterlambatan angsuran akan di kenakan biaya sebesar 0,5 % dari biaya angsuran tersebut sesuai dengan jumlah angsuran yang harus di bayar oleh PIHAK KEDUA dan denda keterlambatan ini dihitung per-hari sejak jatuh tempo pembayaran berlangsung', 0, 'J');
 
 $pdf->SetXY(100, 40);
@@ -199,41 +199,41 @@ $pdf->Cell(5, 5, 'f.', 0, 0, 'L');
 $pdf->SetXY(105, 80);
 $pdf->MultiCell(100, 5, 'Apabila terjadi kerusakan akibat dari kelalaian PIHAK KEDUA dan masa angsuran tersebut belum lunas, maka PIHAK KEDUA wajib melunasi angsuran tersebut, serta untuk menjamin kepastian terpenuhinya hak PIHAK PERTAMA maka PIHAK KEDUA wajib memberikan jaminan kepada PIHAK PERTAMA yang dapat berupa barang berharga dan/atau surat beharga.', 0, 'J');
 
-$pdf->SetXY(105, 110);
-$pdf->Cell(110, 20, 'Pasal 8', 0, 0, 'C');
-$pdf->SetXY(105, 125);
-$pdf->MultiCell(100, 5, 'Selama Barang tersebut belum dibayar lunas, maka Barang tersebut masih milik PIHAK PERTAMA. Dan, PIHAK PERTAMA sewaktu-waktu dapat mengecek keadaan barang tersebut, karena status barang tersebut masih merupakan titipan PIHAK PERTAMA di alamat PIHAK KEDUA.', 0, 'J');
+$pdf->SetXY(0, 115);
+$pdf->Cell(210, 20, 'Pasal 8', 0, 0, 'C');
+$pdf->SetXY(0, 130);
+$pdf->MultiCell(210, 5, 'Selama Barang tersebut belum dibayar lunas, maka Barang tersebut masih milik PIHAK PERTAMA. Dan, PIHAK PERTAMA sewaktu-waktu dapat mengecek keadaan barang tersebut, karena status barang tersebut masih merupakan titipan PIHAK PERTAMA di alamat PIHAK KEDUA.', 0, 'J');
+//
+$pdf->SetXY(0, 135);
+$pdf->Cell(210, 20, 'Pasal 9', 0, 0, 'C');
+$pdf->SetXY(0, 150);
+$pdf->MultiCell(210, 5, 'Selama Barang tersebut belum dibayar lunas, maka Barang tersebut masih milik PIHAK PERTAMA. Dan, PIHAK PERTAMA sewaktu-waktu dapat mengecek keadaan barang tersebut, karena status barang tersebut masih merupakan titipan PIHAK PERTAMA di alamat PIHAK KEDUA.', 0, 'J');
+//
+$pdf->SetXY(0, 160);
+$pdf->Cell(210, 20, 'Pasal 10', 0, 0, 'C');
+$pdf->SetXY(0, 175);
+$pdf->MultiCell(210, 5, 'Apabila terjadi perselisihan dari Perjanjian ini akan diselesaikan dengan jalan musyawarah, dan apabila tidak terjadi kesepakatan antara kedua belah pihak dalam musyawarah, maka kedua belah pihak sepakat untuk menyelesaikan dengan jalur hokum dengan mengambil tempat tinggal (domisili) yang umum dan tetap di Kantor Pengadilan Negeri. Demikianlah Perjanjian ini dibuat dan ditandatangani padahari, tanggal, bulan, tahun seperti yang disebutkan dalam awal Perjanjian ini, dibuat rangkap 2 dan bermeterai cukup yang berkekuatan hukum yang sama untuk masing masing pihak.', 0, 'J');
 
-$pdf->SetXY(105, 150);
-$pdf->Cell(100, 20, 'Pasal 9', 0, 0, 'C');
-$pdf->SetXY(105, 165);
-$pdf->MultiCell(100, 5, 'Selama Barang tersebut belum dibayar lunas, maka Barang tersebut masih milik PIHAK PERTAMA. Dan, PIHAK PERTAMA sewaktu-waktu dapat mengecek keadaan barang tersebut, karena status barang tersebut masih merupakan titipan PIHAK PERTAMA di alamat PIHAK KEDUA.', 0, 'J');
-
-$pdf->SetXY(105, 190);
-$pdf->Cell(105, 20, 'Pasal 10', 0, 0, 'C');
-$pdf->SetXY(100, 205);
-$pdf->MultiCell(105, 5, 'Apabila terjadi perselisihan dari Perjanjian ini akan diselesaikan dengan jalan musyawarah, dan apabila tidak terjadi kesepakatan antara kedua belah pihak dalam musyawarah, maka kedua belah pihak sepakat untuk menyelesaikan dengan jalur hokum dengan mengambil tempat tinggal (domisili) yang umum dan tetap di Kantor Pengadilan Negeri. Demikianlah Perjanjian ini dibuat dan ditandatangani padahari, tanggal, bulan, tahun seperti yang disebutkan dalam awal Perjanjian ini, dibuat rangkap 2 dan bermeterai cukup yang berkekuatan hukum yang sama untuk masing masing pihak.', 0, 'J');
-
-$pdf->SetXY(5, 140);
+$pdf->SetXY(5, 210);
 $pdf->Cell(90, 20, 'Pihak Kedua', 0, 0, 'C');
-$pdf->SetXY(5, 170);
+$pdf->SetXY(5, 240);
 $pdf->Cell(90, 20, $r_member['member_name'] ? $r_member['member_name'] : ".................", 0, 0, 'C');
 
-$pdf->SetXY(100, 135);
+$pdf->SetXY(100, 200);
 $pdf->Cell(90, 20, 'Gresik, '.format_date_only(new_date()), 0, 0, 'C');
-$pdf->SetXY(100, 140);
+$pdf->SetXY(100, 21);
 $pdf->Cell(90, 20, 'Pihak Pertama', 0, 0, 'C');
-$pdf->SetXY(100, 145);
+$pdf->SetXY(100, 210);
 $pdf->Cell(90, 20, $r_office['office_name'], 0, 0, 'C');
-$pdf->SetXY(100, 170);
+$pdf->SetXY(100, 240);
 $pdf->Cell(90, 20, $r_office['office_owner'], 0, 0, 'C');
 
-$pdf->SetXY(5, 185);
-$pdf->Cell(210, 20, 'Penjamin', 0, 0, 'C');
-$pdf->SetXY(5, 190);
-$pdf->Cell(210, 20, 'Pihak Kedua', 0, 0, 'C');
-$pdf->SetXY(5, 220);
-$pdf->Cell(210, 20, $partner_name ? $partner_name : ".................", 0, 0, 'C');
+// $pdf->SetXY(5, 185);
+// $pdf->Cell(210, 20, 'Penjamin', 0, 0, 'C');
+// $pdf->SetXY(5, 190);
+// $pdf->Cell(210, 20, 'Pihak Kedua', 0, 0, 'C');
+// $pdf->SetXY(5, 220);
+// $pdf->Cell(210, 20, $partner_name ? $partner_name : ".................", 0, 0, 'C');
 
 
 $pdf->Output();
