@@ -214,14 +214,14 @@ $pdf->Cell(210, 20, 'Pasal 10', 0, 0, 'C');
 $pdf->SetXY(0, 175);
 $pdf->MultiCell(210, 5, 'Apabila terjadi perselisihan dari Perjanjian ini akan diselesaikan dengan jalan musyawarah, dan apabila tidak terjadi kesepakatan antara kedua belah pihak dalam musyawarah, maka kedua belah pihak sepakat untuk menyelesaikan dengan jalur hokum dengan mengambil tempat tinggal (domisili) yang umum dan tetap di Kantor Pengadilan Negeri. Demikianlah Perjanjian ini dibuat dan ditandatangani padahari, tanggal, bulan, tahun seperti yang disebutkan dalam awal Perjanjian ini, dibuat rangkap 2 dan bermeterai cukup yang berkekuatan hukum yang sama untuk masing masing pihak.', 0, 'J');
 
-$pdf->SetXY(5, 210);
+$pdf->SetXY(5, 205);
 $pdf->Cell(90, 20, 'Pihak Kedua', 0, 0, 'C');
 $pdf->SetXY(5, 240);
 $pdf->Cell(90, 20, $r_member['member_name'] ? $r_member['member_name'] : ".................", 0, 0, 'C');
 
 $pdf->SetXY(100, 200);
 $pdf->Cell(90, 20, 'Gresik, '.format_date_only(new_date()), 0, 0, 'C');
-$pdf->SetXY(100, 21);
+$pdf->SetXY(100, 205);
 $pdf->Cell(90, 20, 'Pihak Pertama', 0, 0, 'C');
 $pdf->SetXY(100, 210);
 $pdf->Cell(90, 20, $r_office['office_name'], 0, 0, 'C');
