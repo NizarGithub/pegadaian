@@ -88,15 +88,18 @@
                     <?php
                     $no = 1;
                     $berapa_kali = $r_item_kredit['lama'];
-                    for ($i=0; $i < $berapa_kali; $i++) {?>
+                    for ($i=1; $i <= $berapa_kali; $i++) {?>
                       <tr>
                         <td class="center"><?= $no?></td>
                         <td class="center">Rp.<?= format_rupiah($r_item_kredit['angsuran_per_bulan'])?></td>
                         <?php
                         $bulan = $r_item_kredit['kredit_date'];
                         $tanggal = date('m',strtotime($bulan));
+                        $tahun = date('Y',strtotime($bulan));
+                        $tahun_angsuran = $tahun;
                         $bulan_angsuran = $i + $tanggal;
-                        if ($bulan_angsuran>12) { $bulan_angsuran = $bulan_angsuran - 12;}
+
+                        if ($bulan_angsuran>12) { $bulan_angsuran = $bulan_angsuran - 12;$tahun_angsuran = 1 + $tahun;}
                         $bulan = array('','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
                         $bulan_angsuran = $bulan[$bulan_angsuran];
                         ?>
@@ -106,6 +109,7 @@
                         <?php else: ?>
                           Minggu ke - <?= $i+1?>
                         <?php endif; ?>
+                        <?= $tahun_angsuran?>
                         </td>
                         <td class="center"><?= $r_item_kredit['pembayaran_per_tanggal_1']." - ".$r_item_kredit['pembayaran_per_tanggal_2']?></td>
                         <td class="center">
@@ -121,9 +125,10 @@
                           $tanggal_skrg_aktif = format_date_only($tanggal);
 
                           $bulan_angsuran = $i + $bulan;
+                          if ($bulan_angsuran>12) { $bulan_angsuran = $bulan_angsuran - 12;$tahun = 1 + $tahun;}
                           $tanggal_selama_angsuran = $tahun.'-'.$bulan_angsuran.'-'.$hari;
-                          $tanggal_selama_angsuran = date('d/m/Y',strtotime($tanggal_selama_angsuran));
-                          $tanggal_explode = explode('/',$tanggal_selama_angsuran);
+                          // $tanggal_selama_angsuran = date('d/m/Y',strtotime($tanggal_selama_angsuran));
+                          $tanggal_explode = explode('-',$tanggal_selama_angsuran);
 
                           $tanggal_explode_hari   = (int) $tanggal_explode[0];
                           $tanggal_explode_bulan  = (int) $tanggal_explode[1];
@@ -134,27 +139,28 @@
                           $status = 0;
                           if ($telah_diangsur >= $no){
                             echo "Sudah Dibayar";
-                          }elseif ($tanggal_batas < $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun > $tahun_kredit) {
+                          }elseif ($tanggal_selama_angsuran<$tanggal_skrg_aktif) {
                             $status=1;
                             echo "Terlambat";
-                          } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun > $tahun_kredit) {
-                            $status=1;
-                            echo "Terlambat";
-                          } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun == $tahun_kredit) {
-                            $status=1;
-                            echo "Terlambat";
-                          } elseif ($tanggal_batas < $hari && $tanggal_explode_bulan == $bulan && $tanggal_explode_tahun == $tahun_kredit) {
-                            $status=1;
-                            echo "Terlambat";
-                          } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan == $bulan && $tanggal_explode_tahun == $tahun_kredit) {
-                            $status=1;
-                            echo "Terlambat";
-                          } elseif ($tanggal_batas < $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun == $tahun_kredit) {
-                            $status=0;
-                            echo "Aman";
-                          } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun <= $tahun_kredit) {
-                            $status=0;
-                            echo "Aman";
+                          // }
+                          // elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun > $tahun_kredit) {
+                          //   $status=1;
+                          //   echo "Terlambat";
+                          // } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun == $tahun_kredit) {
+                          //   $status=1;
+                          //   echo "Terlambat";
+                          // } elseif ($tanggal_batas < $hari && $tanggal_explode_bulan == $bulan && $tanggal_explode_tahun == $tahun_kredit) {
+                          //   $status=1;
+                          //   echo "Terlambat";
+                          // } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan == $bulan && $tanggal_explode_tahun == $tahun_kredit) {
+                          //   $status=1;
+                          //   echo "Terlambat";
+                          // } elseif ($tanggal_batas < $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun == $tahun_kredit) {
+                          //   $status=0;
+                          //   echo "Aman";
+                          // } elseif ($tanggal_batas > $hari && $tanggal_explode_bulan > $bulan && $tanggal_explode_tahun <= $tahun_kredit) {
+                          //   $status=0;
+                          //   echo "Aman";
                           } else {
                             echo "Aman";
                           }
