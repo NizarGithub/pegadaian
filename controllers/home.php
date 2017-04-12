@@ -131,11 +131,12 @@ switch ($page) {
 				for ($i=0; $i < $lama_angsuran; $i++) {
 
 						$bulan = $r_piutang_telat['kredit_date'];
-
 						$bulan_i = date('m',strtotime($bulan));
+						$bulan_i = $bulan_i+1;
 						$bulan_angsuran_i = $i + $bulan_i;
 						$bulan_ar = array('','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember');
-						$bulan_angsuran = $bulan_ar[$bulan_angsuran_i];
+						// $bulan_angsuran = $bulan_ar[$bulan_angsuran_i];
+						// echo $bulan_angsuran;
 
 						$where_kredit_id = "WHERE kredit_id = '$kredit_id'";
 				    $angsuran_kredit_id = select_config_by('angsuran_kredit', 'angsuran_kredit_id', $where_kredit_id);

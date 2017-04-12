@@ -45,5 +45,11 @@ switch ($page) {
     $q_angsuran_kredit = select_angsuran_kredit($transaction_id);
     include '../views/piutang/piutang_popmodal.php';
     break;
+
+  case 'print_buku_angsuran':
+    $transaction_id = $_GET['transaction_id'];
+    $member_id = $_GET['member_id'];
+    header("location:print.php?transaction_id=$transaction_id&member_id=$member_id");
+    break;
   }
 ?>

@@ -227,6 +227,15 @@ switch ($page) {
 		$row_span = 4;
 		include '../views/print/list_angsuranpiutang.php';
 		break;
+
+	case 'print_buku_angsuran':
+
+		$transaction_id = $_GET['transaction_id'];
+		$member_id = $_GET['member_id'];
+
+		include '../views/print/print_buku_angsuran.php';	
+
+		break;
 }
 
 ?>

@@ -49,7 +49,6 @@
                   $piutang = 0;
                   $tot_piutang = 0;
                   while($r_piutang = mysql_fetch_array($q_piutang)){ ?>
-                    <?= $r_piutang['member_id'];?>
                 <tr>
                   <td style="text-align:center;"><?= $no?></td>
                   <td style="text-align:center;"><?= $r_piutang['transaction_code']?></td>
@@ -73,6 +72,10 @@
                     <a type="button" class="btn btn-default" href="#"
                     onclick="piutang_popmodal(<?= $r_piutang['transaction_id']?>,<?= $r_piutang['member_id']?>)">
                       <i class="fa fa-search"></i>
+                    </a>
+                    <a type="button" class="btn btn-default"
+                    href="piutang.php?page=print_buku_angsuran&transaction_id=<?= $r_piutang['transaction_id']?>&member_id=<?= $r_piutang['member_id']?>">
+                      <i class="fa fa-print"></i>
                     </a>
                   </td>
                 </tr>
