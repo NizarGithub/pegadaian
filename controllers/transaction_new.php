@@ -1016,7 +1016,6 @@ switch ($page) {
     create_config('kredit',$data_kredit);
 		create_journal2($row['transaction_code'], "transaction_new.php?page=save(hutang)", 1,$i_payment_method,
 										$i_uang_muka_barang, $i_sisa,  $i_bank_id,$i_bank_account,$i_bank_id_to,$i_bank_account_to, $branch_id);
-
 		$where = "WHERE transaction_id = '$i_transaction_id'";
 		$query_detail =  select_config('transaction_tmp_details',$where);
 		$tipe_pembeli  = get_tipe_pembeli($i_member_id);

@@ -128,7 +128,7 @@ switch ($page) {
 				$no_2 = 1;
 				$kredit_id = $r_piutang_telat['kredit_id'];
 
-				for ($i=0; $i < $lama_angsuran; $i++) {
+				for ($i=1; $i < $lama_angsuran; $i++) {
 
 						$bulan = $r_piutang_telat['kredit_date'];
 						$bulan_i = date('m',strtotime($bulan));

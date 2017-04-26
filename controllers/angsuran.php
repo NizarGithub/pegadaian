@@ -254,5 +254,35 @@ switch ($page) {
   case 'telat_bayar_popmodal':
     include '../views/angsuran/telat_bayar_popmodal.php';
     break;
-}
- ?>
+
+  case 'edit_termin':
+    $id = $_GET['id'];
+    $member_id = $_GET['member_id'];
+    $where_member_id = "WHERE member_id = '$member_id'";
+    $member_name = select_config_by('members', 'member_name',$where_member_id);
+    $action = "angsuran.php?page=update_termin";
+    include '../views/angsuran/edit_termin_popmodal.php';
+    break;
+
+  case 'update_termin':
+
+    $kredit_id = $_POST['id'];
+    $member_id = $_POST['member_id'];
+    $per_tanggal = $_POST['per_tanggal'];
+    $tanggal = explode("-", $per_tanggal);
+    $tanggal_1 = $tanggal[0];
+    $tanggal_2 = $tanggal[1];
+
+    $where_kredit_id = "kredit_id = '$kredit_id'";
+
+    $data = "
+             pembayaran_per_tanggal_1 = '$tanggal_1',
+             pembayaran_per_tanggal_2 = '$tanggal_2'
+             ";
+    echo $kredit_id;
+    update_config2('kredit', $data, $where_kredit_id);
+    header("Location: angsuran.php?page=list_piutang_member&id=$member_id");
+    break;
+
+  }
+  ?>

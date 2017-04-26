@@ -363,4 +363,22 @@ function total_yang_sudah_dibayar($id){
 	return $result;
 }
 
+function select_trans_kredit($id){
+	$query = mysql_query("SELECT a.*, a.lama_angsuran AS lama, b.*, c.*, d.*, e.*, count(e.angsuran_kredit_details_id) as pengangsuran FROM kredit a
+												LEFT JOIN items b on b.item_id = a.item_id
+												LEFT JOIN item_harga c on c.item_id = a.item_id
+												LEFT JOIN angsuran_kredit d on d.kredit_id = a.kredit_id
+												LEFT JOIN angsuran_kredit_details e on e.angsuran_kredit_id = d.angsuran_kredit_id
+												WHERE a.kredit_id = '$id'
+												GROUP by a.kredit_id");
+	return $query;
+}
+
+function select_piutang_pembeli_detail($id){
+	$query = mysql_query("SELECT a.*, b.* FROM kredit a
+												LEFT JOIN transactions b on b.transaction_id = a.transaction_id
+												WHERE a.kredit_id = '$id'");
+	return $query;
+}
+
 ?>

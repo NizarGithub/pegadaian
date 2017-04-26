@@ -13,7 +13,6 @@ $s_cabang = $_SESSION['branch_id'];
 $permit = get_akses_permits($_SESSION['user_type_id'],$_SESSION['sub_menu_active']);
 $tanggal = new_date();
 $tahun = date("Y", strtotime($tanggal));
-
 switch ($page) {
 
 	case 'list':
@@ -353,7 +352,7 @@ switch ($page) {
 		break;
 
 	case 'delete_purchase':
-		$purchases_code = get_isset($_GET['purchases_code']);
+		$purchases_code = get_isset($_GET['purchase_code']);
 		$branch_id = get_isset($_GET['branch_id']);
 			$q_delete_purchase = select_delete_purchase($purchases_code,$branch_id);
 			$r_delete_purchase = mysql_fetch_array($q_delete_purchase);
@@ -389,10 +388,13 @@ switch ($page) {
 									'".$r_delete_purchase_details['retur']."'
 									";
 		create_config('hapus_purchase_details',$data_detail);
-		update_stock($r_delete_purchase_details['item_id'],$r_delete_purchase_details['purchase_qty'],$r_delete_purchase['branch_id']);
+		// update_stock($r_delete_purchase_details['item_id'],$r_delete_purchase_details['purchase_qty'],$r_delete_purchase['branch_id']);
+		// $update_data = "status = 0";
+		$purchase_id = $r_delete_purchase_details['purchase_id'];
+		$where_purchase_id = "purchase_id = '$purchase_id'";
+		delete_config('item_keterangan_details', $where_purchase_id);
 		}
 		delete_purchase($purchases_code,$branch_id);
-		var_dump($_SESSION['date']);
 		header("Location: report_detail.php?page=list&preview=1&date=".$_SESSION['date']);
 		break;
 
@@ -425,26 +427,40 @@ switch ($page) {
 								'".$r_delete_transaction['branch_id']."'
 							";
 			create_config('hapus_transactions',$data);
+
 			$q_delete_transaction_details = select_delete_transaction_details($transaction_code,$branch_id);
 			while ($r_delete_transaction_details = mysql_fetch_array($q_delete_transaction_details)) {
+
 			$data_detail ="'',
 										'".$r_delete_transaction_details['transaction_id']."',
-										'".$r_delete_transaction_details['item_type']."',
+										'',
 										'".$r_delete_transaction_details['item_id']."',
 										'".$r_delete_transaction_details['transaction_detail_original_price']."',
 										'".$r_delete_transaction_details['transaction_detail_margin_price']."',
 										'".$r_delete_transaction_details['transaction_detail_price']."',
-										'".$r_delete_transaction_details['transaction_detail_price_discount']."',
+										'',
 										'".$r_delete_transaction_details['transaction_detail_grand_price']."',
 										'".$r_delete_transaction_details['transaction_detail_qty']."',
 										'".$r_delete_transaction_details['transaction_detail_unit']."',
 										'".$r_delete_transaction_details['transaction_detail_total']."',
 										'".$r_delete_transaction_details['retur']."'
 										";
-			create_config('hapus_transaction_details',$data_detail,$branch_id);
-			update_stock($r_delete_transaction_details['item_id'],$r_delete_transaction_details['transaction_detail_qty']);
+				create_config('hapus_transaction_details',$data_detail,$branch_id);
+				update_stock_back($r_delete_transaction_details['item_id'],$r_delete_transaction_details['transaction_detail_qty'], $r_delete_transaction_details['branch_id']);
+
+				$transaction_id = $r_delete_transaction_details['transaction_id'];
+				$where_transaction_id = "WHERE transaction_id = '$transaction_id'";
+				$item_keterangan_details_id = select_config_by('transaction_details_item', 'keterangan_item', $where_transaction_id);
+
+				$update_data = "status = 0";
+				$where_item_keterangan_detail_id = "item_keterangan_details_id = '$item_keterangan_details_id'";
+				echo $where_item_keterangan_detail_id;
+				update_config2('item_keterangan_details', $update_data, $where_item_keterangan_detail_id);
 			}
+			$param_transaction_id = "transaction_id = '$transaction_id'";
+			delete_config('kredit', $param_transaction_id);
 			delete_transaction($transaction_code,$branch_id);
+
 			header("Location: report_detail.php?page=list&preview=1&date=".$_SESSION['date']);
 			break;
 

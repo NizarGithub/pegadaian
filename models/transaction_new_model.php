@@ -282,7 +282,7 @@ function create_journal2($data_id, $data_url, $journal_type_id, $i_payment_metho
 	mysql_query("insert into journals values(
 				'',
 				'$journal_type_id',
-				'".time()."',
+				'$data_id',
 				'$data_url',
 				'$journal_debit',
 				'0',

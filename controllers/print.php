@@ -228,14 +228,74 @@ switch ($page) {
 		include '../views/print/list_angsuranpiutang.php';
 		break;
 
-	case 'print_buku_angsuran':
+		case 'print_buku_angsuran':
+	    $transaction_id = $_GET['transaction_id'];
+	    $member_id = $_GET['member_id'];
+			$where_member_id = "WHERE member_id = '$member_id'";
+			$r_member = select_object_config('members', $where_member_id);
+			$where_transaction_id =  "WHERE transaction_id = '$transaction_id'";
+			$kredit_id = select_config_by('kredit','kredit_id',$where_transaction_id);
 
-		$transaction_id = $_GET['transaction_id'];
-		$member_id = $_GET['member_id'];
+			$where =  "WHERE kredit_id = '$kredit_id'";
+	    $item_id = select_config_by('kredit','item_id',$where);
+	    $member_id = select_config_by('kredit','member_id',$where);
+	    $transaction_id = select_config_by('kredit','transaction_id',$where);
+	    $where_item_id =  "WHERE item_id = '$item_id'";
+	    $item_name = select_config_by('items','item_name',$where_item_id);
+	    $item_gambar = select_config_by('items','stock_img',$where_item_id);
+	    $q_item_kredit = select_trans_kredit($kredit_id);
+	    $r_item_kredit = mysql_fetch_array($q_item_kredit);
 
-		include '../views/print/print_buku_angsuran.php';	
+	    $periode = $r_item_kredit['periode'];
+	    $where_periode = "WHERE periode_id = '$periode'";
+	    $periode_name = select_config_by('periode', 'periode_name', $where_periode);
 
-		break;
+	    $q_piutang_pembeli_detail = select_piutang_pembeli_detail($kredit_id);
+
+	    $where_angsuran_kredit_id = "WHERE kredit_id = '$kredit_id'";
+	    $angsuran_kredit_id = select_config_by('angsuran_kredit', 'angsuran_kredit_id', $where_angsuran_kredit_id);
+
+			$transaction_date = select_config_by('transactions', 'transaction_date', $where_transaction_id);
+			$user_id = select_config_by('transactions', 'user_id', $where_transaction_id);
+
+			$where_user_id = "WHERE user_id = '".$_SESSION['user_id']."'";
+			$user_name = select_config_by('users', 'user_name', $where_user_id);
+
+
+	    $where_telah_diangsur = "WHERE angsuran_kredit_id = '$angsuran_kredit_id'";
+	    $telah_diangsur = select_config_by('angsuran_kredit_details', 'COUNT(*)', $where_telah_diangsur);
+
+			// $transaction_detail_id = select_config_by('transaction_details', 'transaction_detail_id', $where_transaction_id);
+			// $q_transaction_details_item = select_transaction_details_item($transaction_detail_id);
+			// $r_transaction_details_item = mysql_fetch_array($q_transaction_details_item);
+			//
+			// $r_transaction_details_item['item_keterangan_details'];
+			// echo $r_transaction_details_item['item_keterangan_details'];
+
+			$hari_ini = get_nama_hari($transaction_date);
+			$bulan_ini = get_nama_bulan($transaction_date);
+			$tahun_ini = get_tahun($transaction_date);
+
+			$transaction_date_akhir = explode("-", $transaction_date);
+			$tahun_akhir = $transaction_date_akhir[0];
+			$bulan_akhir = $transaction_date_akhir[1]+$r_item_kredit['lama'];
+			$hari_akhir = $transaction_date_akhir[2]+$r_item_kredit['lama'];
+
+			$transaction_date_akhir = $tahun_ini.'-'.$bulan_akhir.'-'.$hari_akhir;
+			// echo $transaction_date_akhir;
+
+			$bulan_akhir = get_nama_bulan($transaction_date_akhir);
+			$where_item_id = "WHERE item_id = '$item_id' AND transaction_id = '$transaction_id'";
+			$q_item_keterangan_details = select_config('transaction_details_item' ,$where_item_id);
+			while ($r_item_keterangan_details = mysql_fetch_array($q_item_keterangan_details)) {
+							$keterangan_item = $r_item_keterangan_details['keterangan_item'];
+							$where_keterangan_item = "WHERE item_keterangan_details_id = '$keterangan_item'";
+							$item_keterangan_details_id = select_config_by('item_keterangan_details', 'keterangan_details', $where_keterangan_item);
+							}
+
+			include '../views/print/print_buku_angsuran.php';
+
+	    break;
 }
 
 ?>

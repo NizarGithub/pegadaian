@@ -87,12 +87,13 @@
       Print
     </button>
   </a>
-  <?php if ($permit == 1): ?>
+  <!-- <button type="button" name="button" onclick="test()">ccwecwecwecwec</button> -->
+  <?php if (strpos($permit, 'd') !== false){ ?>
     <button type="button" class="btn btn-danger"
-    onclick="confirm_delete_3(<?= $purchases_code ?>,<?= $branch_id?>,'report_detail.php?page=delete_purchase&purchases_code=','&branch_id=')"
-    data-dismiss="modal">
-      Hapus
+    onclick="confirm_delete(<?= $branch_id?>,'report_detail.php?page=delete_purchase&purchase_code=<?= $purchase_code?>&branch_id=')">
+    <i class="fa fa-trash-o"></i>
+    Hapus
     </button>
-  <?php endif; ?>
+  <?php }?>
   <button type="button" class="btn btn-primary" data-dismiss="modal">Keluar</button>
 </div>

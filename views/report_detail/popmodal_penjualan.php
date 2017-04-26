@@ -112,10 +112,12 @@
       Print
     </button>
   </a>
-  <?php if ($permit == 1): ?>
+  <?php if (strpos($permit, 'd') !== false): ?>
     <button type="button" class="btn btn-danger"
-    onclick="confirm_delete_3(<?= $transaction_code ?>,<?= $branch_id?>,'report_detail.php?page=delete_transaction&transaction_code=','&branch_id=')"
-    data-dismiss="modal">Hapus
+    onclick="confirm_delete(<?= $branch_id?>,'report_detail.php?page=delete_transaction&transaction_code=<?= $transaction_code?>&branch_id=')"
+    data-dismiss="modal">
+    <i class="fa fa-trash-o"></i>
+    Hapus
     </button>
   <?php endif; ?>
   <button type="button" class="btn btn-primary" data-dismiss="modal">Keluar</button>

@@ -301,6 +301,10 @@ function update_stock($id ,$qty, $branch_id){
 	mysql_query("update item_stocks set item_stock_qty = item_stock_qty - '$qty' WHERE item_id = '$id' and branch_id = '$branch_id'");
 }
 
+function update_stock_back($id ,$qty, $branch_id){
+	mysql_query("update item_stocks set item_stock_qty = item_stock_qty + '$qty' WHERE item_id = '$id' and branch_id = '$branch_id'");
+}
+
 
   function select_item_purchase($id){
     $query = mysql_query("SELECT a.*, b.*, b.purchase_price as harga_item, b.purchase_total as harga_item_total, b.unit_id as unit_id_beli, c.*, e.unit_name AS unit_name_beli FROM purchases a

@@ -49,7 +49,7 @@ switch ($page) {
   case 'print_buku_angsuran':
     $transaction_id = $_GET['transaction_id'];
     $member_id = $_GET['member_id'];
-    header("location:print.php?transaction_id=$transaction_id&member_id=$member_id");
+    header("location:print.php?page=print_buku_angsuran&transaction_id=$transaction_id&member_id=$member_id");
     break;
   }
 ?>

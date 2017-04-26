@@ -96,14 +96,20 @@ $total_debit = 0;
 $total_kredit = 0;
 $total_piutang = 0;
 $total_hutang = 0;
+$cliet_name = '';
 while ($r_umum = mysql_fetch_array($q_umum)) {
+			if ($r_umum['journal_type_id']==1) {
+				$cliet_name = get_member_name($r_umum['data_id']);
+			} else if ($r_umum['journal_type_id']==2) {
+				$cliet_name = get_supplier_name($r_umum['data_id']);
+			}
 			$objPHPExcel->setActiveSheetIndex(0)
               		->setCellValue('A'.$i, $j)
               		->setCellValue('B'.$i, $r_umum['data_id'])
               		->setCellValue('C'.$i, format_date_only($r_umum['journal_date']))
 									->setCellValue('D'.$i, $r_umum['branch_name'])
 									->setCellValue('E'.$i, $r_umum['user_name'])
-									->setCellValue('F'.$i, $r_umum['client'])
+									->setCellValue('F'.$i, $cliet_name)
 									->setCellValue('G'.$i, $r_umum['journal_type_name'])
 									->setCellValue('H'.$i, $r_umum['journal_debit'])
 									->setCellValue('I'.$i, $r_umum['journal_credit'])
@@ -172,7 +178,6 @@ $k2 = $i2++;
 $objPHPExcel->setActiveSheetIndex(1)
 						->setCellValue('F'.$k2, 'TOTAL')
 						->setCellValue('G'.$k2, $total_setor_angsuran);
-
 						$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(5);
 						$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
 						$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
